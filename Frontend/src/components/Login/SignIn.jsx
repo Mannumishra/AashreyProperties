@@ -8,9 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignIn = () => {
-    
+
     const navigate = useNavigate();
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -27,15 +28,15 @@ const SignIn = () => {
         }))
     }
 
-    const handleSubmit = async (event) =>{
+    const handleSubmit = async (event) => {
         setLoading(true)
         event.preventDefault();
         try {
             console.log(process.env.REACT_APP_BACKEND_URL)
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`,formData);
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, formData);
             console.log(response.data);
             setLoading(false)
-            
+
             toast.success('OTP Send Successfully !!');
             navigate(`/sign-up/confirm-account/${formData.email}`)
         } catch (error) {
@@ -52,57 +53,69 @@ const SignIn = () => {
             behavior: "smooth"
         })
     }, [])
-    
-  return (
-    <>
 
-        <section className="my-3 login-page">
-            <div className="container">
-                <div className="row login">
-                    
-                    <div className="col-md-6 form-div text-center">
-                        <div className="headings">
-                            <h1>Create Your Account</h1>
-                            <p>Create your account with your personal Details</p>
-                        </div>
-                        <div className="form" onSubmit={handleSubmit}>
-                            <form>
-                                <div className="input-field">
-                                    <i className="fa-solid fa-user-lock"></i>
-                                    <input type="text" value={formData.name} name='name' onChange={handleChange} placeholder="Enter Name" required />
-                                </div>
-                                <div className="input-field">
-                                    <i className="fa-solid fa-envelope"></i>
-                                    <input type="email" onChange={handleChange} value={formData.email} name='email' placeholder="Enter Email" required />
-                                </div>
-                                <div className="input-field">
-                                    <i className="fa-solid fa-phone-volume"></i>
-                                    <input type="tel" onChange={handleChange} value={formData.phoneNumber} name='phoneNumber' placeholder="Enter Mobile Number" required />
-                                </div>
-                                <div className="input-field">
-                                    <i className="fa-solid fa-lock"></i>
-                                    <input type="password" onChange={handleChange} value={formData.password} name='password' placeholder="Enter Password" required />
-                                </div>
+    return (
+        <>
 
-                                <div className="">
-                                    <Link to="/login">Already Have a Account?</Link>
-                                    <div></div>
-                                </div>
-                                
-                                <button type='submit' disabled={loading} className={`${loading ? 'not-allowed':'allowed' }`}>
-                                    {loading ? "Please Wait ..." : "Send OTP"}
-                                </button>
-                            </form>
+            <section className="my-3 login-page">
+                <div className="container">
+                    <div className="row login">
+
+                        <div className="col-md-6 form-div text-center">
+                            <div className="headings">
+                                <h1>Create Your Account</h1>
+                                <p>Create your account with your personal Details</p>
+                            </div>
+                            <div className="form" onSubmit={handleSubmit}>
+                                <form>
+                                    <div className="input-field">
+                                        <i className="fa-solid fa-user-lock"></i>
+                                        <input type="text" value={formData.name} name='name' onChange={handleChange} placeholder="Enter Name" required />
+                                    </div>
+                                    <div className="input-field">
+                                        <i className="fa-solid fa-envelope"></i>
+                                        <input type="email" onChange={handleChange} value={formData.email} name='email' placeholder="Enter Email" required />
+                                    </div>
+                                    <div className="input-field">
+                                        <i className="fa-solid fa-phone-volume"></i>
+                                        <input type="tel" onChange={handleChange} value={formData.phoneNumber} name='phoneNumber' placeholder="Enter Mobile Number" required />
+                                    </div>
+                                    <div className="input-field password-field">
+                                        <i className="fa-solid fa-lock"></i>
+                                        <input
+                                            type={showPassword ? 'text' : 'password'} // Toggle between 'text' and 'password'
+                                            value={formData.password}
+                                            name="password"
+                                            onChange={handleChange}
+                                            placeholder="Enter Password"
+                                            required
+                                        />
+                                        <i
+                                            className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} // Dynamic icon
+                                            onClick={() => setShowPassword(!showPassword)} // Toggle state
+                                            style={{ cursor: 'pointer' }}
+                                        ></i>
+                                    </div>
+
+                                    <div className="">
+                                        <Link to="/login">Already Have a Account?</Link>
+                                        <div></div>
+                                    </div>
+
+                                    <button type='submit' disabled={loading} className={`${loading ? 'not-allowed' : 'allowed'}`}>
+                                        {loading ? "Please Wait ..." : "Send OTP"}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-md-6 d-none d-md-block">
-                        <img src={sideBg} alt="laboratry Image" />
+                        <div className="col-md-6 d-none d-md-block">
+                            <img src={sideBg} alt="laboratry Image" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </>
-  )
+            </section>
+        </>
+    )
 }
 
 export default SignIn
