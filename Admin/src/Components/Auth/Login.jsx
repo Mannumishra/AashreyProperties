@@ -9,6 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     password: '',
     email: ''
@@ -21,6 +22,12 @@ const Login = () => {
       [name]: value
     }))
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
   const handleSubmit = async (event) => {
     setLoading(true)
     event.preventDefault();
@@ -79,15 +86,25 @@ const Login = () => {
                 name='email'
               />
             </div>
-            <div className="form-group">
+            <div className="form-group password-group">
               <label>Password</label>
-              <input
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="form-control"
-                name='password'
-              />
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="form-control"
+                  name="password"
+                />
+                <span
+                  className="toggle-password"
+                  onClick={togglePasswordVisibility}
+                  role="button"
+                  aria-label="Toggle Password Visibility"
+                >
+                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                </span>
+              </div>
             </div>
             <button type="submit" disabled={loading} className={`login-button ${loading ? 'not-allowed' : 'allowed'}`} >{loading ? "Please Wait ..." : "Login"}</button>
           </form>

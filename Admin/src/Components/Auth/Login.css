@@ -7,6 +7,26 @@
     --color-blue: #4377a2;
     --color-blue-light: #00AAA9;
   }
+
+  .password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .toggle-password:hover {
+    color: #007bff;
+  }
+  
+
+
   .main-login{
     background: var(--bg-head);
     min-height: 100dvh;
