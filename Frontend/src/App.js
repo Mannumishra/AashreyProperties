@@ -24,6 +24,7 @@ import AddProperty from './Pages/Vendor/AddProperty';
 import ResetPassword from './components/Login/ResetPassword';
 import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
 import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
+import PopupBox from './Pages/PopUpBox/PopupBox';
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
         <div class="boxed_wrapper">
           <Header />
           <ToastContainer />
+          <PopupBox />
           <Routes>
             <Route path='/' element={<Home />} />
 

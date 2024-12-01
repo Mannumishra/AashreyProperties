@@ -98,7 +98,7 @@ const Footer = () => {
         <div className="footer-bottom p_relative">
           <div className="container">
             <div className="bottom-inner p_relative">
-              <div className="copyright"><p> Copyright © 2024 by <Link to={`/`}>Aashrey Realtors</Link>. All Rights Reserved By <a href="https://www.digiindiasolutions.com/" target="_blank">DIGI INDIA SOLUTIONS</a></p></div>
+              <div className="copyright"><p> Copyright © 2024 by <Link to={`/`}>Aashrey Realtors</Link>. All Rights Reserved By Aashrey Realtors Team</p></div>
             </div>
           </div>
         </div>

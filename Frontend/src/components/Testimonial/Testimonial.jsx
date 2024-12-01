@@ -8,27 +8,44 @@ const testimonials = [
         id: 1,
         image: 'https://avatars.githubusercontent.com/u/138967484?v=4',
         name: 'Harsh Vardhan Mishra',
-        position: 'Developer',
-        review: 'Aashrey Realtors provided an exceptional home-buying experience with their professional team and quality properties.',
+        position: 'Home Buyer',
+        review: 'Aashrey Realtors made the home-buying process seamless and stress-free. From finding the perfect property to finalizing the sale, their team was professional and attentive to every detail.',
         rating: 5.0
     },
     {
         id: 2,
         image: 'https://avatars.githubusercontent.com/u/145193630?v=4',
         name: 'Mannu Sharma',
-        position: 'Designer',
-        review: 'Fantastic service! The team was attentive, and the property exceeded my expectations. A truly smooth process from start to finish.',
+        position: 'Rental Client',
+        review: 'Finding a rental property was never this easy! Aashrey Realtors offered a wide range of options, and their team ensured a smooth and hassle-free renting experience.',
         rating: 4.8
     },
     {
         id: 3,
         image: 'https://avatars.githubusercontent.com/u/89571620?v=4',
         name: 'Gourav Panchal',
-        position: 'Web Developer',
-        review: 'Great experience with Aashrey Realtors. They made finding and renting a home effortless. Excellent customer service and quality options.',
+        position: 'Investor',
+        review: 'I recently purchased a property through Aashrey Realtors, and the experience was excellent. Their expertise in the market helped me make a smart investment with confidence.',
         rating: 4.9
     },
+    {
+        id: 4,
+        image: 'https://avatars.githubusercontent.com/u/90000000?v=4',
+        name: 'Simran Kaur',
+        position: 'Seller',
+        review: 'Selling my home was effortless with Aashrey Realtors. They handled everything professionally, and I got the best deal in no time. Highly recommend them!',
+        rating: 5.0
+    },
+    {
+        id: 5,
+        image: 'https://avatars.githubusercontent.com/u/80000000?v=4',
+        name: 'Rohit Verma',
+        position: 'Tenant',
+        review: 'Renting a property through Aashrey Realtors was a pleasant experience. The team was very responsive and made sure all my requirements were met.',
+        rating: 4.7
+    }
 ];
+
 
 
 const Testimonial = () => {
