@@ -20,7 +20,7 @@ const Profile = () => {
       setUserData(storedUser);
 
       // Fetch properties listed by the user
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-properties-by-vendor/${storedUser._id}`)
+      axios.get(`http://localhost:8000/api/v1/get-properties-by-vendor/${storedUser._id}`)
         .then(response => {
           setProperties(response.data.data);
           filterProperties(response.data.data, 'Approved');

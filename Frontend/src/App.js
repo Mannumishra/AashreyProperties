@@ -22,6 +22,8 @@ import PropertyBySearch from './Pages/PropertyPage/PropertyBySearch';
 import Profile from './Pages/Vendor/Profile';
 import AddProperty from './Pages/Vendor/AddProperty';
 import ResetPassword from './components/Login/ResetPassword';
+import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
+import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
 function App() {
   return (
     <>
@@ -53,6 +55,10 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/profile/add-property' element={<AddProperty />} />
             <Route path='/profile/reset-password' element={<ResetPassword />} />
+
+            <Route path='/termsandconditions' element={<TermsAndConditions />} />
+            <Route path='/privacypolicy' element={<PrivacyPolicy />} />
+
           </Routes>
           <Footer />
         </div>

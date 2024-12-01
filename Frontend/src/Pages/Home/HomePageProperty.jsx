@@ -10,7 +10,7 @@ const HomePageProperty = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/approved-properties`);
+                const response = await axios.get(`http://localhost:8000/api/v1/approved-properties`);
 
                 if (response.data && Array.isArray(response.data.data)) {
                     const reverseData = response.data.data.reverse()

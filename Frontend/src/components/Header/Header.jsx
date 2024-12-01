@@ -15,7 +15,7 @@ const Header = () => {
 
   const fetchPropertyCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+      const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
       if (response.data.success) {
         setPropertyCategory(response.data.data);
       } else {
@@ -77,10 +77,10 @@ const Header = () => {
           <div className="upper-head d-flex flex-row justify-content-between container ">
             <div className="social-links">
               <ul className="clearfix d-flex flex-row justify-content-between gap-2">
-                <li><a href="#"><span className="fab fa-twitter" /></a></li>
-                <li><a href="#"><span className="fab fa-facebook-square" /></a></li>
-                <li><a href="#"><span className="fab fa-instagram" /></a></li>
-                <li><a href="#"><span className="fab fa-youtube" /></a></li>
+                {/* <li><a href="#"><span className="fab fa-twitter" /></a></li> */}
+                {/* <li><a href="https://www.facebook.com/Cupagreen?mibextid=ZbWKwL" target='_blank'><span className="fab fa-facebook-square" /></a></li> */}
+                <li><a href="https://www.instagram.com/aashreyrealtors?igsh=MTlmMGV1eG16cjN6NQ==" target='_blank'><span className="fab fa-instagram" /></a></li>
+                {/* <li><a href="#"><span className="fab fa-youtube" /></a></li> */}
               </ul>
             </div>
             <div className="number"><span className="fab fa-phone" /><a href="tel:+919999030896">+91-9999030896</a></div>
@@ -201,7 +201,7 @@ const Header = () => {
               <ul>
                 <li>RZF-904/14, Raj Nagar Part-II, Palam Colony, N.D-45 (Near Malaria Hospital Sec-8, Dwarka)</li>
                 <li><a href="tel:+919999030896">+91-9999030896</a></li>
-                <li><a href="mailto:hansbuilderdwarka@gmail.com">hansbuilderdwarka@gmail.com</a></li>
+                <li><a href="mailto:aashreyrealtors@gmail.com">aashreyrealtors@gmail.com</a></li>
               </ul>
             </div>
             <div className="social-links">

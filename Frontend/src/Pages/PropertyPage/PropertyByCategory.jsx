@@ -25,7 +25,7 @@ const PropertyByCategory = () => {
     // Fetch Properties by Category
     const fetchPropertyByCategory = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/approved-properties/${categoryName}`);
+            const response = await axios.get(`http://localhost:8000/api/v1/approved-properties/${categoryName}`);
             if (response.data.success) {
                 const reverseData = response.data.data.reverse();
                 setAllProperties(reverseData);
@@ -44,7 +44,7 @@ const PropertyByCategory = () => {
     // Fetch Locations
     const fetchLocations = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-all-location`);
+            const response = await axios.get(`http://localhost:8000/api/v1/get-all-location`);
             if (response.data.success) {
                 const locationData = response.data.data;
                 setStates(locationData.map(location => location.state));
@@ -64,7 +64,7 @@ const PropertyByCategory = () => {
     // Fetch Property Types
     const fetchPropertyTypes = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/properties/types`);
+            const response = await axios.get(`http://localhost:8000/api/v1/properties/types`);
             if (response.data.success) {
                 setPropertyTypes(response.data.data);
             } else {

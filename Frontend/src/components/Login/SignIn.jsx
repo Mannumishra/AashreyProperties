@@ -33,7 +33,7 @@ const SignIn = () => {
         event.preventDefault();
         try {
             console.log(process.env.REACT_APP_BACKEND_URL)
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, formData);
+            const response = await axios.post(`http://localhost:8000/api/v1/register`, formData);
             console.log(response.data);
             setLoading(false)
 

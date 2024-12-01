@@ -53,7 +53,7 @@ const ContactPage = () => {
 
       <MetaTag
         title="Contact Us - Aashrey Realtors"
-        description="Get in touch with Aashrey Realtors for your real estate needs. Located at RZF-904/14, Raj Nagar Part-II, Palam Colony, N.D-45. Call us at +91 9999030896 or email hansbuilderdwarka@gmail.com."
+        description="Get in touch with Aashrey Realtors for your real estate needs. Located at RZF-904/14, Raj Nagar Part-II, Palam Colony, N.D-45. Call us at +91 9999030896 or email aashreyrealtors@gmail.com."
         keyword="Aashrey Realtors contact, real estate contact, Aashrey Realtors address, contact Aashrey Realtors, real estate inquiries, Aashrey Realtors phone number, Aashrey Realtors email"
       />
 
@@ -100,7 +100,7 @@ const ContactPage = () => {
                   </div>
                   <div className="right__site__info two">
                     <h5>E-mail Address</h5>
-                    <a href="mailto:hansbuilderdwarka@gmail.com">hansbuilderdwarka@gmail.com</a>
+                    <a href="mailto:aashreyrealtors@gmail.com">aashreyrealtors@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -140,6 +140,26 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+
+         {/* Google Map Section */}
+         <section className="google-map-section">
+        <div className="container">
+          <h3>Our Location</h3>
+          <div className="google-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.6082385453!2d76.81306454789077!3d28.646677318867447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0331e499f5d9%3A0xc9e9c9d681f39ec!2sRaj%20Nagar%20II%2C%20Palam%20Colony%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1683050193484!5m2!1sen!2sin"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      {/* Google Map End */}
       {/* contact end*/}
 
     </>

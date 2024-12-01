@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch property types
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/properties/types`)
+    axios.get(`http://localhost:8000/api/v1/properties/types`)
       .then(response => {
         if (response.data.success) {
           setPropertyTypes(response.data.data);
@@ -31,7 +31,7 @@ const Home = () => {
       });
 
     // Fetch locations
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-all-location`)
+    axios.get(`http://localhost:8000/api/v1/get-all-location`)
       .then(response => {
         if (response.data.success) {
           setLocations(response.data.data);
@@ -47,7 +47,7 @@ const Home = () => {
 
   const fetchPropertyCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+      const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
       if (response.data.success) {
         setPropertyCategories(response.data.data);
         setSelectedCategory(response.data.data[0]); // Default to the first category

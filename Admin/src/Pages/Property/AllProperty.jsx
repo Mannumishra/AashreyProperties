@@ -23,7 +23,7 @@ const AllProperty = () => {
 
     const fetchPropertyCategories = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+            const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
             if (response.data.success) {
                 setPropertyCategory(response.data.data);
             } else {
@@ -37,7 +37,7 @@ const AllProperty = () => {
 
     const fetchPropertyTypes = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/properties/types`);
+            const response = await axios.get(`http://localhost:8000/api/v1/properties/types`);
             if (response.data.success) {
                 setPropertyType(response.data.data);
             } else {
@@ -51,7 +51,7 @@ const AllProperty = () => {
 
     const handleFetch = async () => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-all-properties`);
+            const res = await axios.get(`http://localhost:8000/api/v1/get-all-properties`);
             const main = res.data.data.reverse();
             setProperties(main);
             setFilteredProperties(main);
@@ -94,7 +94,7 @@ const AllProperty = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete-property/${id}`);
+                    await axios.delete(`http://localhost:8000/api/v1/delete-property/${id}`);
                     toast.success("Property Deleted Successfully");
                     handleFetch();
 
@@ -113,7 +113,7 @@ const AllProperty = () => {
 
     const handleStatusChange = async (id, status) => {
         try {
-            const res = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/properties/${id}/status`, { status });
+            const res = await axios.patch(`http://localhost:8000/api/v1/properties/${id}/status`, { status });
             toast.success(`Property status updated to ${status}`);
             handleFetch();
         } catch (error) {

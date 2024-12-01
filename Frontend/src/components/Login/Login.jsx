@@ -27,7 +27,7 @@ const Login = () => {
         setLoading(true)
         event.preventDefault();
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, formData);
+            const response = await axios.post(`http://localhost:8000/api/v1/login`, formData);
             setLoading(false)
             console.log(response.data);
             toast.success('Login SuccessFull')

@@ -32,7 +32,7 @@ const Login = () => {
     setLoading(true)
     event.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin-login`, formData);
+      const response = await axios.post(`http://localhost:8000/api/v1/admin-login`, formData);
       setLoading(false)
       console.log(response);
       if (response.data.user.role === "Vendor") {

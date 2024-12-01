@@ -18,7 +18,7 @@ const PropertyDetailByCategory = () => {
 
     const fetchPropertyByPropertyTitle = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/property-by-name/${newTitleName}`);
+            const response = await axios.get(`http://localhost:8000/api/v1/property-by-name/${newTitleName}`);
             if (response.data.success) {
                 setProperty(response.data.data);
             } else {
@@ -31,7 +31,7 @@ const PropertyDetailByCategory = () => {
 
     const fetchPropertyByCategory = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/approved-properties/${newCategoryName}`);
+            const response = await axios.get(`http://localhost:8000/api/v1/approved-properties/${newCategoryName}`);
             if (response.data.success) {
                 const reverseData = response.data.data.reverse();
                 setListedProperty(reverseData);

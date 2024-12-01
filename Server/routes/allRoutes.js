@@ -14,6 +14,7 @@ const authenticate = require('../middlewares/auth');
 const authorizeRoles = require('../middlewares/roleauth');
 // const { multipleImages } = require('../middlewares/Multer');
 const upload = require('../middlewares/multer');
+const { createRecord, getBlog, getSingleBlog, updateBlog, deleteBlog } = require('../controlers/BlogController');
 
 // Property Routes
 router.post('/create-property',upload.array("images" ,10) , createProperty); 
@@ -62,6 +63,12 @@ router.post('/Verify-Otp/:email', VerifyOtp)
 router.post("/login", LoginUser);
 router.post("/admin-login", LoginAdmin);
 router.get("/all-users", getAllUsers);
+
+router.post("/add-blog" ,upload.single("image") ,createRecord)
+router.get("/get-blogs" ,getBlog)
+router.get("/get-blog/:id" ,getSingleBlog)
+router.put("/update-blog/:id" ,updateBlog)
+router.delete("/delete-blog/:id" ,deleteBlog)
 
 
 module.exports = router;

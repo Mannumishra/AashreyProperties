@@ -44,7 +44,7 @@ const PropertyBySearch = () => {
       setError(null);
 
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/approved-properties`);
+        const response = await axios.get(`http://localhost:8000/api/v1/approved-properties`);
 
         if (response.data.success) {
           const fetchedProperties = response.data.data;

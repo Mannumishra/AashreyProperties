@@ -9,7 +9,7 @@ const Footer = () => {
 
   const fetchPropertyCategories = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+      const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
       if (response.data.success) {
         setPropertyCategory(response.data.data);
       } else {
@@ -55,6 +55,8 @@ const Footer = () => {
                       <li><Link to={`/properties`}>Property</Link></li>
                       {/* <li><Link to={`/blog`}>Blog</Link></li> */}
                       <li><Link to={`/contact`}>Contact Us</Link></li>
+                      <li><Link to={`/termsandconditions`}>Terms & Conditions</Link></li>
+                      <li><Link to={`/privacypolicy`}>Privacy Policy</Link></li>
                     </ul>
                   </div>
                 </div>
@@ -84,7 +86,7 @@ const Footer = () => {
                     <ul className="info-list clearfix">
                       <li><span className="icon-icon-31" /> GF, PKT 10, 152-153, Pocket 8, Sector-24, Rohini, New Delhi, Delhi, 110085</li>
                       <li><span className="icon-icon-35" /> <a href="tel:+919999030896">+91 9999030896</a></li>
-                      <li><span className="icon-60" /> <a href="mailto:hansbuilderdwarka@gmail.com">hansbuilderdwarka@gmail.com</a></li>
+                      <li><span className="icon-60" /> <a href="mailto:aashreyrealtors@gmail.com">aashreyrealtors@gmail.com</a></li>
                     </ul>
                   </div>
                 </div>

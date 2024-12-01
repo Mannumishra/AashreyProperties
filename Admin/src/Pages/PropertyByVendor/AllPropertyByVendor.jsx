@@ -13,7 +13,7 @@ const AllPropertyByVendor = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/all-users`);
+                const res = await axios.get(`http://localhost:8000/api/v1/all-users`);
                 setUsers(res.data.users);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -26,7 +26,7 @@ const AllPropertyByVendor = () => {
     // Fetch properties when a user is selected or status filter changes
     const fetchPropertiesByUser = async (userId, filterStatus = statusFilter) => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-properties-by-vendor/${userId}`);
+            const res = await axios.get(`http://localhost:8000/api/v1/get-properties-by-vendor/${userId}`);
             let properties = res.data.data;
 
             if (filterStatus !== 'All') {
@@ -55,7 +55,7 @@ const AllPropertyByVendor = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete-property/${id}`);
+                    await axios.delete(`http://localhost:8000/api/v1/delete-property/${id}`);
                     toast.success("Property Deleted Successfully");
                     
                     Swal.fire({
@@ -90,7 +90,7 @@ const AllPropertyByVendor = () => {
     // Handle status change
     const handleStatusChange = async (id, status) => {
         try {
-            await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/properties/${id}/status`, { status });
+            await axios.patch(`http://localhost:8000/api/v1/properties/${id}/status`, { status });
             toast.success(`Property status updated to ${status}`);
             fetchPropertiesByUser(selectedUser); // Refetch properties to reflect the updated status
         } catch (error) {

@@ -34,7 +34,7 @@ const EditProperty = () => {
     useEffect(() => {
         const fetchPropertyDetails = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-by-id/${id}`);
+                const response = await axios.get(`http://localhost:8000/api/v1/get-property-by-id/${id}`);
                 if (response.data.success) {
                     const property = response.data.data;
                     setFormData({
@@ -67,7 +67,7 @@ const EditProperty = () => {
 
         const fetchLocations = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-all-location`);
+                const response = await axios.get(`http://localhost:8000/api/v1/get-all-location`);
                 if (response.data.success) {
                     setLocations(response.data.data);
                 } else {
@@ -81,7 +81,7 @@ const EditProperty = () => {
 
         const fetchPropertyCategories = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+                const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
                 if (response.data.success) {
                     setPropertyCategory(response.data.data);
                 } else {
@@ -95,7 +95,7 @@ const EditProperty = () => {
 
         const fetchPropertyTypes = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/properties/types`);
+                const response = await axios.get(`http://localhost:8000/api/v1/properties/types`);
                 if (response.data.success) {
                     setPropertyType(response.data.data);
                 } else {
@@ -136,7 +136,7 @@ const EditProperty = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/update-property/${id}`, formData);
+            const response = await axios.put(`http://localhost:8000/api/v1/update-property/${id}`, formData);
             toast.success('Property updated successfully');
             navigate('/all-properties');
         } catch (error) {

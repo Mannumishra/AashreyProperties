@@ -32,7 +32,7 @@ const ForgetPassword = () => {
         setLoading(true)
         event.preventDefault()
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/Password-change-request`, formData)
+            const response = await axios.post(`http://localhost:8000/api/v1/Password-change-request`, formData)
             console.log(response.data);
             setLoading(false);
             toast.success(response.data.msg)
@@ -53,7 +53,7 @@ const ForgetPassword = () => {
         setLoading(true)
         otpevent.preventDefault()
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/Verify-Otp/${formData.email}`, formData)
+            const response = await axios.post(`http://localhost:8000/api/v1/Verify-Otp/${formData.email}`, formData)
             console.log(response.data);
             setLoading(false);
             toast.success(response.data.msg)
@@ -72,7 +72,7 @@ const ForgetPassword = () => {
         setLoading(true)
         otpevent.preventDefault()
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/Resend-Otp/`, formData)
+            const response = await axios.post(`http://localhost:8000/api/v1/Resend-Otp/`, formData)
             console.log(response.data);
             setLoading(false);
             setTimeLeft(300); // Reset the timer

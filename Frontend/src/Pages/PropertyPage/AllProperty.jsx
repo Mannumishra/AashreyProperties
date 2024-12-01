@@ -26,7 +26,7 @@ const AllProperty = () => {
     // Fetch property types
     const fetchPropertyTypes = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/properties/types`);
+            const response = await axios.get(`http://localhost:8000/api/v1/properties/types`);
             if (response.data.success) {
                 setPropertyTypes(response.data.data);
             } else {
@@ -40,7 +40,7 @@ const AllProperty = () => {
     // Fetch property categories
     const fetchPropertyCategories = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-property-category`);
+            const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
             if (response.data.success) {
                 setPropertyCategories(response.data.data);
             } else {
@@ -54,7 +54,7 @@ const AllProperty = () => {
     // Fetch locations
     const fetchLocations = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-all-location`);
+            const response = await axios.get(`http://localhost:8000/api/v1/get-all-location`);
             if (response.data.success) {
                 setStates(response.data.data);
             } else {
@@ -69,7 +69,7 @@ const AllProperty = () => {
     const fetchProperties = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/approved-properties`);
+            const response = await axios.get(`http://localhost:8000/api/v1/approved-properties`);
             // console.log('API Response:', response.data);  // Debugging
             if (response.data.success) {
                 const filteredProperties = response.data.data.filter(property =>
