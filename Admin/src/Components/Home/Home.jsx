@@ -14,6 +14,7 @@ import AllPropertyByVendor from '../../Pages/PropertyByVendor/AllPropertyByVendo
 import AddBlog from '../../Pages/Blog/AddBlog.jsx'
 import AllBlog from '../../Pages/Blog/AllBlog.jsx'
 import EditBlog from '../../Pages/Blog/EditBlog.jsx'
+import AllQuery from '../../Pages/Query/AllQuery.jsx'
 
 const Home = () => {
   const hansAdminToken = sessionStorage.getItem("Login");
@@ -36,9 +37,10 @@ const Home = () => {
               <Route path="/edit-property/:id" element={<EditProperty />} />
 
               <Route path="/all-vendor-properties" element={<AllPropertyByVendor />} />
-              
+
               {/* Users */}
               <Route path="/all-users" element={<AllUsers />} />
+              <Route path="/all-query" element={<AllQuery />} />
 
 
               <Route path="/add-blog" element={<AddBlog />} />

@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 import './Header.css'
 
 const Header = () => {
-  const [sidetoggle,setSideToggle] = useState(false)
+  const [sidetoggle, setSideToggle] = useState(false)
 
-  const handletoggleBtn =()=>{
+  const handletoggleBtn = () => {
     setSideToggle(!sidetoggle)
   }
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     sessionStorage.removeItem("hansBuilderToken");
     sessionStorage.removeItem("hansBuilderUser");
     // sessionStorage.setItem('Login', true);
     sessionStorage.removeItem("Login")
-    window.location.href="/";
+    window.location.href = "/";
   }
   return (
     <>
@@ -26,7 +26,7 @@ const Header = () => {
             </div>
           </div>
           <div className="left">
-            <a href="" target="_blank">
+            <a href="https://aashreyrealtors.com/" target="_blank">
               <i class="fa-solid fa-globe"></i>
               Go To Website
             </a>
@@ -38,9 +38,15 @@ const Header = () => {
 
         </div>
 
-        <div className={`rightNav ${sidetoggle ? "active" : "" } `  }>
+        <div className={`rightNav ${sidetoggle ? "active" : ""} `}>
           <ul>
             <li><Link to="/dashboard" onClick={handletoggleBtn}> <i class="fa-solid fa-gauge"></i> Dashboard</Link></li>
+            <li>
+              <Link to="/all-query" onClick={handletoggleBtn}>
+                <i className="fa-solid fa-envelope"></i> Contact Inquiry
+              </Link>
+            </li>
+
             <li><Link to="/all-locations" onClick={handletoggleBtn}> <i class="fa-solid fa-location-dot"></i> All Locations</Link></li>
             <li><Link to="/all-properties" onClick={handletoggleBtn}> <i class="fa-solid fa-building"></i> All Properties</Link></li>
             <li><Link to="/all-vendor-properties" onClick={handletoggleBtn}> <i class="fa-solid fa-building"></i> User Properties</Link></li>

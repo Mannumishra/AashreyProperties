@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Controllers
-const {createProperty , getPropertyById, updateProperty, deleteProperty, getProperties, updatePropertyStatus, getAllProperty, getPropertiesByVendor, getApprovedProperties, getPropertyCategory, getPropertiesByCategory, getPropertyTypes, getPropertiesByType, getApprovedPropertiesByCategory, getPropertyByName } = require('../controlers/property.controler');
+const { createProperty, getPropertyById, updateProperty, deleteProperty, getProperties, updatePropertyStatus, getAllProperty, getPropertiesByVendor, getApprovedProperties, getPropertyCategory, getPropertiesByCategory, getPropertyTypes, getPropertiesByType, getApprovedPropertiesByCategory, getPropertyByName } = require('../controlers/property.controler');
 // const userController = require('../controlers/user.controler');
 const { register, PasswordChangeRequest, ResendOtp, ResendSignOtp, verifyOtpForSignIn, VerifyOtp, LoginUser, getAllUsers, LoginAdmin } = require('../controlers/user.controler');
 
@@ -15,24 +15,25 @@ const authorizeRoles = require('../middlewares/roleauth');
 // const { multipleImages } = require('../middlewares/Multer');
 const upload = require('../middlewares/multer');
 const { createRecord, getBlog, getSingleBlog, updateBlog, deleteBlog } = require('../controlers/BlogController');
+const { createPopup, getAllPopups, getPopupById, updatePopup, deletePopup } = require('../controlers/popupController');
 
 // Property Routes
-router.post('/create-property',upload.array("images" ,10) , createProperty); 
+router.post('/create-property', upload.array("images", 10), createProperty);
 
 router.get('/get-property-by-id/:id', getPropertyById);
 router.get('/property-by-name/:name', getPropertyByName);
 router.get('/get-all-properties', getAllProperty);
 router.put('/update-property/:id', updateProperty);
-router.delete('/delete-property/:_id',  deleteProperty);
+router.delete('/delete-property/:_id', deleteProperty);
 router.get('/get-properties-by-query', getProperties);
-router.patch('/properties/:id/status',  updatePropertyStatus);
+router.patch('/properties/:id/status', updatePropertyStatus);
 router.get('/get-properties-by-vendor/:vendorId', getPropertiesByVendor);
-router.get('/approved-properties',getApprovedProperties)
-router.get('/get-property-category',getPropertyCategory)
+router.get('/approved-properties', getApprovedProperties)
+router.get('/get-property-category', getPropertyCategory)
 router.get('/properties/category/:category', getPropertiesByCategory);
 router.get('/approved-properties/:category', getApprovedPropertiesByCategory);
-router.get('/properties/types', getPropertyTypes); 
-router.get('/properties/type/:type', getPropertiesByType); 
+router.get('/properties/types', getPropertyTypes);
+router.get('/properties/type/:type', getPropertiesByType);
 
 
 
@@ -64,11 +65,20 @@ router.post("/login", LoginUser);
 router.post("/admin-login", LoginAdmin);
 router.get("/all-users", getAllUsers);
 
-router.post("/add-blog" ,upload.single("image") ,createRecord)
-router.get("/get-blogs" ,getBlog)
-router.get("/get-blog/:id" ,getSingleBlog)
-router.put("/update-blog/:id" ,updateBlog)
-router.delete("/delete-blog/:id" ,deleteBlog)
+router.post("/add-blog", upload.single("image"), createRecord)
+router.get("/get-blogs", getBlog)
+router.get("/get-blog/:id", getSingleBlog)
+router.put("/update-blog/:id", updateBlog)
+router.delete("/delete-blog/:id", deleteBlog)
+
+
+router.post("/popup", createPopup);
+router.get("/get-popup", getAllPopups);
+router.get("/getpopup/:id", getPopupById);
+router.put("/update/popup/:id", updatePopup);
+router.delete("/deletepopup/:id", deletePopup);
+
+
 
 
 module.exports = router;

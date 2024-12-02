@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const PopupBox = () => {
     const [data, setData] = useState({
@@ -17,16 +17,20 @@ const PopupBox = () => {
     };
 
     const [loading, setLoading] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [showModal, setShowModal] = useState(false); // State to control modal visibility
+    const [showModal, setShowModal] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:8000/api/v1/contacts", data);
-            if (res.status === 200) {
-                toast.success("Your Query Sent Successfully");
+            const res = await axios.post("http://localhost:8000/api/v1/popup", data);
+            if (res.status === 201) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your Query Sent Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                });
                 setData({
                     name: "",
                     email: "",
@@ -34,28 +38,34 @@ const PopupBox = () => {
                     message: "",
                     lookingfor: ""
                 });
-                setIsSubmitted(true); // Mark as submitted
-                setShowModal(false); // Hide the modal after submission
+                sessionStorage.setItem("formSubmitted", "true");
+                setShowModal(false); // Close the modal
             }
         } catch (error) {
             console.error(error);
-            toast.error("There was an error sending your query");
+            Swal.fire({
+                title: 'Error!',
+                text: 'There was an error sending your query. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        let intervalId;
-        if (!isSubmitted) {
-            intervalId = setInterval(() => {
-                setShowModal(true); // Show the modal at intervals
-            }, 3000);
-        }
-        return () => clearInterval(intervalId);
-    }, [isSubmitted]);
+        const formSubmitted = sessionStorage.getItem("formSubmitted");
 
-    // Close the modal
+        if (!formSubmitted) {
+            const intervalId = setInterval(() => {
+                setShowModal(true);
+            }, 10000);
+
+            return () => clearInterval(intervalId);
+        }
+    }, []);
+
     const handleCloseModal = () => {
         setShowModal(false);
     };
@@ -64,10 +74,10 @@ const PopupBox = () => {
         <>
             {showModal && (
                 <div
-                    className="modal fade show"
-                    style={{ display: 'block' }}
+                    className={`modal ${showModal ? "fade show" : ""}`}
+                    style={{ display: showModal ? 'block' : 'none' }}
                     id="enquiryModal"
-                    aria-hidden="true"
+                    aria-hidden={!showModal}
                     aria-labelledby="enquiryModalLabel"
                     tabIndex="-1"
                 >
@@ -80,7 +90,6 @@ const PopupBox = () => {
                                 <button
                                     type="button"
                                     className="btn-close"
-                                    data-bs-dismiss="modal"
                                     aria-label="Close"
                                     onClick={handleCloseModal}
                                 ></button>

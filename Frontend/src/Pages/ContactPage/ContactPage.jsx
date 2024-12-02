@@ -1,79 +1,87 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import MetaTag from '../../components/Meta/MetaTags';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const ContactPage = () => {
-
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    lookingfor: ""
+  });
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  const getInputdata = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
-    setMessage(null);
-    setError(null);
-
-    const formData = new FormData(event.target);
-    formData.append("access_key", "ff14c527-5f59-4cfa-8e2d-07ecd1f43852");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: json
-      }).then((res) => res.json());
-
-      if (res.success) {
-        setMessage("Email sent successfully!");
-      } else {
-        setError("Something went wrong. Please try again.");
+      const res = await axios.post("http://localhost:8000/api/v1/popup", data);
+      if (res.status === 201) {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your query has been sent successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+        setData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          lookingfor: ""
+        });
       }
-    } catch (err) {
-      setError("Failed to submit the form. Please try again.");
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: 'Error!',
+        text: 'There was an error sending your query. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
-  }, [])
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <>
-
       <MetaTag
         title="Contact Us - Aashrey Realtors"
         description="Get in touch with Aashrey Realtors for your real estate needs. Located at RZF-904/14, Raj Nagar Part-II, Palam Colony, N.D-45. Call us at +91 9999030896 or email aashreyrealtors@gmail.com."
         keyword="Aashrey Realtors contact, real estate contact, Aashrey Realtors address, contact Aashrey Realtors, real estate inquiries, Aashrey Realtors phone number, Aashrey Realtors email"
       />
 
-
-      {/* ----- BreadCrumb ----    */}
+      {/* BreadCrumb */}
       <section className="page__title p_relative">
-        <div className="bg-layer parallax-bg" data-parallax="{&quot;y&quot;: 20}" style={{ backgroundImage: 'url(assets/images/resource/page-title.png)' }}>
-        </div>
+        <div className="bg-layer parallax-bg" style={{ backgroundImage: 'url(assets/images/resource/page-title.png)' }} />
         <div className="container">
           <div className="content-box p_relative">
             <h1 className="title">Contact Us</h1>
             <ul className="bread-crumb">
-              <li><Link to={`/`}><span className="icon-icon-16" />Home</Link></li>
+              <li><Link to="/"><span className="icon-icon-16" />Home</Link></li>
               <li><span className="icon-57" />Contact Us</li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* contact*/}
+      {/* Contact */}
       <section className="contact__style__one see__pad">
         <div className="container">
           <div className="row clearfix">
@@ -108,62 +116,53 @@ const ContactPage = () => {
             <div className="col-lg-6 col-md-12 col-sm-12 form-column">
               <div className="form-inner">
                 <div className="contact___title">
-                  <h3> Send us a message </h3>
+                  <h3>Send us a message</h3>
                   <p>If you have any questions, inquiries, or feedback, we’re here to help. Reach out to us by filling out the form below, and our team will get back to you as soon as possible. We value your input and look forward to assisting you.</p>
                 </div>
 
-                <form onSubmit={onSubmit} id="contact-form">
+                <form onSubmit={handleSubmit} id="contact-form">
                   <div className="row clearfix">
                     <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                      <input type="text" name="username" placeholder="Your Name" required />
+                      <input type="text" name="name" placeholder="Your Name" required value={data.name} onChange={getInputdata} />
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 ps-xl-0 form-group">
-                      <input type="email" name="email" placeholder="Your email" required />
+                      <input type="email" name="email" placeholder="Your Email" required value={data.email} onChange={getInputdata} />
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 form-group">
+                      <input type="text" name="phone" placeholder="Your Phone Number" required value={data.phone} onChange={getInputdata} />
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-12 ps-xl-0 form-group">
+                      <input type="text" name="lookingfor" placeholder="Looking For (e.g., Services)" required value={data.lookingfor} onChange={getInputdata} />
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                      <textarea name="message" placeholder="Message" defaultValue={""} />
-                    </div>
-                    <div className="col-12">
-                      {message && <div className="alert alert-success mt-3">{message}</div>}
-                      {error && <div className="alert alert-danger mt-3">{error}</div>}
+                      <textarea name="message" placeholder="Message" required value={data.message} onChange={getInputdata} />
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0">
                       <div className="more__buttons">
-                        <button className="common-btn btn__two" type="submit" name="submit-form">{loading ? "Please wait..." : "Send Your Message"} <i className="icon-icon-51" /></button>
+                        <button className="common-btn btn__two" type="submit" name="submit-form">
+                          {loading ? "Please wait..." : "Send Your Message"} <i className="icon-icon-51" />
+                        </button>
                       </div>
                     </div>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>
         </div>
       </section>
 
-         {/* Google Map Section */}
-         <section className="google-map-section">
+      {/* Google Map Section */}
+      <section className="google-map-section">
         <div className="container">
           <h3>Our Location</h3>
           <div className="google-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.6082385453!2d76.81306454789077!3d28.646677318867447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0331e499f5d9%3A0xc9e9c9d681f39ec!2sRaj%20Nagar%20II%2C%20Palam%20Colony%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1683050193484!5m2!1sen!2sin"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google Map"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.6243092122386!2d77.08410077375741!3d28.730771579615926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d07440faeeedd%3A0x7fd3b4b030819bdf!2sDigi%20India%20Solutions!5e0!3m2!1sen!2sin!4v1733115261961!5m2!1sen!2sin" width="100%" height="450" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
           </div>
         </div>
       </section>
-      {/* Google Map End */}
-      {/* contact end*/}
-
     </>
-  )
-}
+  );
+};
 
-export default ContactPage
+export default ContactPage;
