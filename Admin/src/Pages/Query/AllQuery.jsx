@@ -12,7 +12,7 @@ const AllQuery = () => {
     const fetchUsers = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/get-popup`);
+            const res = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-popup`);
             setUsers(res.data.data);
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -39,7 +39,7 @@ const AllQuery = () => {
     // Delete user
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/v1/deletepopup/${id}`);
+            const res = await axios.delete(`https://api.aashreyrealtors.com/api/v1/deletepopup/${id}`);
             if (res.status === 200) {
                 setUsers(users.filter((user) => user._id !== id));
                 Swal.fire({

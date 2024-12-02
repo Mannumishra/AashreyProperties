@@ -44,7 +44,7 @@ const PropertyBySearch = () => {
       setError(null);
 
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/approved-properties`);
+        const response = await axios.get(`https://api.aashreyrealtors.com/api/v1/approved-properties`);
 
         if (response.data.success) {
           const fetchedProperties = response.data.data;

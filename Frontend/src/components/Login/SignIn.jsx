@@ -33,7 +33,7 @@ const SignIn = () => {
         event.preventDefault();
         try {
             console.log(process.env.REACT_APP_BACKEND_URL)
-            const response = await axios.post(`http://localhost:8000/api/v1/register`, formData);
+            const response = await axios.post(`https://api.aashreyrealtors.com/api/v1/register`, formData);
             console.log(response.data);
             setLoading(false)
 

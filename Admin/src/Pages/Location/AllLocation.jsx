@@ -23,7 +23,7 @@ const AllLocation = () => {
 
     const handleFetch = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/get-all-location`);
+            const res = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-all-location`);
             const main = res.data.data.reverse(); // Reversing the data
             setLocations(main);
             setFilteredLocations(main); // Set initial filtered locations
@@ -80,7 +80,7 @@ const AllLocation = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axios.delete(`http://localhost:8000/api/v1/delete-location/${id}`);
+                    const res = await axios.delete(`https://api.aashreyrealtors.com/api/v1/delete-location/${id}`);
                     toast.success("Location Deleted Successfully");
                     handleFetch();
 
@@ -99,8 +99,8 @@ const AllLocation = () => {
 
     const handleAddOrUpdate = async () => {
         const url = modalType === 'add'
-            ? `http://localhost:8000/api/v1/create-location`
-            : `http://localhost:8000/api/v1/update-location/${currentLocation._id}`;
+            ? `https://api.aashreyrealtors.com/api/v1/create-location`
+            : `https://api.aashreyrealtors.com/api/v1/update-location/${currentLocation._id}`;
 
         const method = modalType === 'add' ? 'post' : 'put';
 

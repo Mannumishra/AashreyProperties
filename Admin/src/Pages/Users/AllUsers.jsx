@@ -7,7 +7,7 @@ const AllUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/api/v1/all-users`);
+                const res = await axios.get(`https://api.aashreyrealtors.com/api/v1/all-users`);
                 setUsers(res.data.users);
             } catch (error) {
                 console.error('Error fetching users:', error);

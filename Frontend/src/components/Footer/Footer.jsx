@@ -9,7 +9,7 @@ const Footer = () => {
 
   const fetchPropertyCategories = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
+      const response = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-property-category`);
       if (response.data.success) {
         setPropertyCategory(response.data.data);
       } else {

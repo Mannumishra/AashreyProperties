@@ -18,7 +18,7 @@ const EditBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/api/v1/get-blog/${id}`);
+                const res = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-blog/${id}`);
                 const blog = res.data.data;
                 setData({
                     blogName: blog.blogName,
@@ -59,7 +59,7 @@ const EditBlog = () => {
             }
             formData.append("blogDescription", data.blogDescription);
 
-            const res = await axios.put(`http://localhost:8000/api/v1/update-blog/${id}`, formData);
+            const res = await axios.put(`https://api.aashreyrealtors.com/api/v1/update-blog/${id}`, formData);
             if (res.status === 200) {
                 toast.success("Blog updated successfully!");
                 navigate("/all-blog");

@@ -32,7 +32,7 @@ const Login = () => {
     setLoading(true)
     event.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8000/api/v1/admin-login`, formData);
+      const response = await axios.post(`https://api.aashreyrealtors.com/api/v1/admin-login`, formData);
       setLoading(false)
       console.log(response);
       if (response.data.user.role === "Vendor") {

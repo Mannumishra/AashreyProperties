@@ -38,7 +38,7 @@ const AddProperty = () => {
 
     const fetchPropertyCategories = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/get-property-category`);
+            const response = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-property-category`);
             if (response.data.success) {
                 setPropertyCategory(response.data.data);
             } else {
@@ -51,7 +51,7 @@ const AddProperty = () => {
     };
     const fetchPropertyTypes = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/properties/types`);
+            const response = await axios.get(`https://api.aashreyrealtors.com/api/v1/properties/types`);
             if (response.data.success) {
                 setPropertyType(response.data.data);
             } else {
@@ -67,7 +67,7 @@ const AddProperty = () => {
     useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/v1/get-all-location`);
+                const response = await axios.get(`https://api.aashreyrealtors.com/api/v1/get-all-location`);
                 if (response.data.success) {
                     setLocations(response.data.data);
                 } else {
@@ -131,7 +131,7 @@ const AddProperty = () => {
         }
     
         try {
-            const response = await axios.post(`http://localhost:8000/api/v1/create-property`, data, {
+            const response = await axios.post(`https://api.aashreyrealtors.com/api/v1/create-property`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

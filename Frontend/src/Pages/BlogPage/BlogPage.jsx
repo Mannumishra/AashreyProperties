@@ -8,7 +8,7 @@ const BlogPage = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/v1/get-blogs');
+                const response = await fetch('https://api.aashreyrealtors.com/api/v1/get-blogs');
                 const data = await response.json();
 
                 if (data.success) {

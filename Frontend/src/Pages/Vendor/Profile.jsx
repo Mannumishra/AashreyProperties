@@ -20,7 +20,7 @@ const Profile = () => {
       setUserData(storedUser);
 
       // Fetch properties listed by the user
-      axios.get(`http://localhost:8000/api/v1/get-properties-by-vendor/${storedUser._id}`)
+      axios.get(`https://api.aashreyrealtors.com/api/v1/get-properties-by-vendor/${storedUser._id}`)
         .then(response => {
           setProperties(response.data.data);
           filterProperties(response.data.data, 'Approved');

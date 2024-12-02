@@ -23,7 +23,7 @@ const PopupBox = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:8000/api/v1/popup", data);
+            const res = await axios.post("https://api.aashreyrealtors.com/api/v1/popup", data);
             if (res.status === 201) {
                 Swal.fire({
                     title: 'Success!',
