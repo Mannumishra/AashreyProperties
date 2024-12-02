@@ -157,7 +157,7 @@ const ContactPage = () => {
         <div className="container">
           <h3>Our Location</h3>
           <div className="google-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.6243092122386!2d77.08410077375741!3d28.730771579615926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d07440faeeedd%3A0x7fd3b4b030819bdf!2sDigi%20India%20Solutions!5e0!3m2!1sen!2sin!4v1733115261961!5m2!1sen!2sin" width="100%" height="450" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3498.6208682765246!2d77.08407007550436!3d28.730874375611183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDQzJzUxLjIiTiA3N8KwMDUnMTEuOSJF!5e0!3m2!1sen!2sin!4v1733118157453!5m2!1sen!2sin" width="100%" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </section>

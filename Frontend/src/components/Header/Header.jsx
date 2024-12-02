@@ -48,8 +48,9 @@ const Header = () => {
     },
     // { title: 'Blog', url: 'blog' },
     { title: 'Contact Us', url: 'contact' },
+    { title: 'Blog', url: 'blog' },
   ];
-  
+
 
   const renderDropdown = (dropdown) => {
     return (
@@ -74,17 +75,17 @@ const Header = () => {
 
 
         <header className={`main-header  ${isHomePage ? "style-one" : "style-three"}`}>
-          <div className="upper-head d-flex flex-row justify-content-between container ">
+          {/* <div className="upper-head d-flex flex-row justify-content-between container ">
             <div className="social-links">
-              <ul className="clearfix d-flex flex-row justify-content-between gap-2">
-                {/* <li><a href="#"><span className="fab fa-twitter" /></a></li> */}
-                {/* <li><a href="https://www.facebook.com/Cupagreen?mibextid=ZbWKwL" target='_blank'><span className="fab fa-facebook-square" /></a></li> */}
-                <li><a href="https://www.instagram.com/aashreyrealtors?igsh=MTlmMGV1eG16cjN6NQ==" target='_blank'><span className="fab fa-instagram" /></a></li>
-                {/* <li><a href="#"><span className="fab fa-youtube" /></a></li> */}
-              </ul>
+              <ul className="clearfix d-flex flex-row justify-content-between gap-2"> */}
+          {/* <li><a href="#"><span className="fab fa-twitter" /></a></li> */}
+          {/* <li><a href="https://www.facebook.com/Cupagreen?mibextid=ZbWKwL" target='_blank'><span className="fab fa-facebook-square" /></a></li> */}
+          {/* <li><a href="https://www.instagram.com/aashreyrealtors?igsh=MTlmMGV1eG16cjN6NQ==" target='_blank'><span className="fab fa-instagram" /></a></li> */}
+          {/* <li><a href="#"><span className="fab fa-youtube" /></a></li> */}
+          {/* </ul>
             </div>
             <div className="number"><span className="fab fa-phone" /><a href="tel:+919999030896">+91-9999030896</a></div>
-          </div>
+          </div> */}
           {/* header-lower */}
           <div className="header-lower">
             <div className="outer-box">

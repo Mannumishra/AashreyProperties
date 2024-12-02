@@ -1,98 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const newsItems = [
-    {
-        id: 1,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2022/09/14152436/DDA-Housing-Scheme-2022-shutterstock_1140375443-1200x700-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-    {
-        id: 2,
-        image: 'https://housing.com/news/wp-content/uploads/2024/06/Desk-setup-ideas-for-creative-people-t.jpg',
-        link: '/',
-        author: 'Akash Gupta',
-        date: '5 October, 2022',
-        title: 'Top Real Estate Trends to Watch in 2024',
-        excerpt: 'Stay ahead of the curve with the latest real estate trends. Explore what’s coming in 2023 and how it impacts your property decisions.'
-    },
-    {
-        id: 3,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2017/12/24193612/How-to-apply-for-MHADA-Lottery-Scheme-Thumbnail-300x200-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-    {
-        id: 1,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2022/09/14152436/DDA-Housing-Scheme-2022-shutterstock_1140375443-1200x700-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-    {
-        id: 2,
-        image: 'https://housing.com/news/wp-content/uploads/2024/06/Desk-setup-ideas-for-creative-people-t.jpg',
-        link: '/',
-        author: 'Akash Gupta',
-        date: '5 October, 2022',
-        title: 'Top Real Estate Trends to Watch in 2024',
-        excerpt: 'Stay ahead of the curve with the latest real estate trends. Explore what’s coming in 2023 and how it impacts your property decisions.'
-    },
-    {
-        id: 3,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2017/12/24193612/How-to-apply-for-MHADA-Lottery-Scheme-Thumbnail-300x200-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-    {
-        id: 1,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2022/09/14152436/DDA-Housing-Scheme-2022-shutterstock_1140375443-1200x700-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-    {
-        id: 2,
-        image: 'https://housing.com/news/wp-content/uploads/2024/06/Desk-setup-ideas-for-creative-people-t.jpg',
-        link: '/',
-        author: 'Akash Gupta',
-        date: '5 October, 2022',
-        title: 'Top Real Estate Trends to Watch in 2024',
-        excerpt: 'Stay ahead of the curve with the latest real estate trends. Explore what’s coming in 2023 and how it impacts your property decisions.'
-    },
-    {
-        id: 3,
-        image: 'https://assets-news.housing.com/news/wp-content/uploads/2017/12/24193612/How-to-apply-for-MHADA-Lottery-Scheme-Thumbnail-300x200-compressed.jpg',
-        link: '/',
-        author: 'Rajeev Singh',
-        date: '11 September, 2022',
-        title: 'Develop Relationships With Human Resource Consectetur',
-        excerpt: 'Discover the latest trends and strategies for building strong relationships in human resources. Learn effective techniques and insights.'
-    },
-];
-
 const BlogPage = () => {
+    const [blogs, setBlogs] = useState([]);
+
+    // Fetch blogs from the API
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/get-blogs');
+                const data = await response.json();
+
+                if (data.success) {
+                    setBlogs(data.data);  // Set the fetched blogs to the state
+                }
+            } catch (error) {
+                console.error('Error fetching blog data:', error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
     return (
         <>
-
-            {/* ----- BreadCrumb ----    */}
+            {/* ----- BreadCrumb ---- */}
             <section className="page__title p_relative">
-                <div className="bg-layer parallax-bg" data-parallax="{&quot;y&quot;: 20}" style={{ backgroundImage: 'url(assets/images/resource/page-title.png)' }}>
-                </div>
+                <div className="bg-layer parallax-bg" data-parallax="{&quot;y&quot;: 20}" style={{ backgroundImage: 'url(assets/images/resource/page-title.png)' }}></div>
                 <div className="container">
                     <div className="content-box p_relative">
                         <h1 className="title">Blog</h1>
@@ -106,39 +40,38 @@ const BlogPage = () => {
 
             <section className="blog__section__two see__pad">
                 <div className="container">
-                    
                     <div className="row">
-                        {newsItems.map((item) => (
-                            <div className="col-xl-4 col-lg-6 col-md-12 pb-30" key={item.id}>
+                        {blogs.map((item) => (
+                            <div className="col-xl-4 col-lg-6 col-md-12 pb-30" key={item._id}>
                                 <div className="news__block__one">
                                     <div className="inner-box">
                                         <div className="image-box">
                                             <figure className="image">
-                                                <Link to={item.link}>
-                                                    <img src={item.image} alt={item.title} />
+                                                <Link to={`/blog/${item._id}`}>
+                                                    <img src={item.image} alt={item.blogName}  style={{height:200 }}/>
                                                 </Link>
                                             </figure>
                                         </div>
                                         <div className="lower__content">
                                             <div className="author__info">
                                                 <ul>
-                                                    <li>
+                                                    {/* <li>
                                                         <Link to={``}><span className="icon-icon-22" /> {item.author}</Link>
-                                                    </li>
+                                                    </li> */}
                                                     <li>
-                                                        <Link to={``}><span className="icon-icon-23" /> {item.date}</Link>
+                                                        <Link to={``}><span className="icon-icon-23" /> {new Date(item.createdAt).toLocaleDateString()}</Link>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div className="news__title">
-                                                <h3> <Link to={item.link}>{item.title}</Link></h3>
+                                                <h5>{item.blogName}</h5>
                                             </div>
                                             <div className="news__text">
-                                                <p>{item.excerpt}</p>
+                                                <p>{item.blogDescription.replace(/(<([^>]+)>)/gi, "").substring(0, 100)}...</p>
                                             </div>
-                                            <div className="more__btn">
-                                                <Link to={item.link}>Read More <span className="icon-57" /> </Link>
-                                            </div>
+                                            {/* <div className="more__btn">
+                                                <Link to={`/blog/${item._id}`}>Read More <span className="icon-57" /> </Link>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +81,7 @@ const BlogPage = () => {
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default BlogPage
+export default BlogPage;
