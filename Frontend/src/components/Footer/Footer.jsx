@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="col-lg-3 col-md-6 col-sm-12 footer-column">
+              <div className="col-lg-3 col-md-6 col-sm-12 footer-column" style={{marginBottom:"45px"}}>
                 <div className="footer-widget left">
                   <div className="widget-title">
                     <h4>Contact Details</h4>
