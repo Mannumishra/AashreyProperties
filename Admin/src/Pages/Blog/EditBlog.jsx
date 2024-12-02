@@ -60,6 +60,7 @@ const EditBlog = () => {
             formData.append("blogDescription", data.blogDescription);
 
             const res = await axios.put(`https://api.aashreyrealtors.com/api/v1/update-blog/${id}`, formData);
+            console.log(res)
             if (res.status === 200) {
                 toast.success("Blog updated successfully!");
                 navigate("/all-blog");

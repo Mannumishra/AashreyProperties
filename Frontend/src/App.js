@@ -25,6 +25,7 @@ import ResetPassword from './components/Login/ResetPassword';
 import TermsAndConditions from './Pages/TermsAndConditions/TermsAndConditions';
 import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
 import PopupBox from './Pages/PopUpBox/PopupBox';
+import SingleBlogPage from './Pages/BlogPage/SingleBlogPage';
 function App() {
   return (
     <>
@@ -46,6 +47,7 @@ function App() {
             <Route path='/property/detail' element={<PropertyDetail />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/blog' element={<BlogPage />} />
+            <Route path='/blog/:id' element={<SingleBlogPage />} />
             <Route path='/contact' element={<ContactPage />} />
 
             {/* ------- Authentication ---------  */}

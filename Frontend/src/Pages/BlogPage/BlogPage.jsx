@@ -48,7 +48,7 @@ const BlogPage = () => {
                                         <div className="image-box">
                                             <figure className="image">
                                                 <Link to={`/blog/${item._id}`}>
-                                                    <img src={item.image} alt={item.blogName}  style={{height:200 }}/>
+                                                    <img src={item.image} alt={item.blogName} style={{ height: 200 }} />
                                                 </Link>
                                             </figure>
                                         </div>
@@ -56,22 +56,26 @@ const BlogPage = () => {
                                             <div className="author__info">
                                                 <ul>
                                                     {/* <li>
-                                                        <Link to={``}><span className="icon-icon-22" /> {item.author}</Link>
-                                                    </li> */}
+                                            <Link to={``}><span className="icon-icon-22" /> {item.author}</Link>
+                                        </li> */}
                                                     <li>
                                                         <Link to={``}><span className="icon-icon-23" /> {new Date(item.createdAt).toLocaleDateString()}</Link>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div className="news__title">
-                                                <h5>{item.blogName}</h5>
+                                                <h5>
+                                                    {item.blogName.length > 20
+                                                        ? `${item.blogName.substring(0, 20)}...`
+                                                        : item.blogName}
+                                                </h5>
                                             </div>
                                             <div className="news__text">
-                                                <p>{item.blogDescription.replace(/(<([^>]+)>)/gi, "").substring(0, 100)}...</p>
+                                                <p>{item.blogDescription.replace(/(<([^>]+)>)/gi, "").substring(0, 80)}...</p>
                                             </div>
                                             {/* <div className="more__btn">
-                                                <Link to={`/blog/${item._id}`}>Read More <span className="icon-57" /> </Link>
-                                            </div> */}
+                                    <Link to={`/blog/${item._id}`}>Read More <span className="icon-57" /> </Link>
+                                </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -80,6 +84,7 @@ const BlogPage = () => {
                     </div>
                 </div>
             </section>
+
         </>
     );
 }

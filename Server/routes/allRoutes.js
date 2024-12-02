@@ -68,7 +68,7 @@ router.get("/all-users", getAllUsers);
 router.post("/add-blog", upload.single("image"), createRecord)
 router.get("/get-blogs", getBlog)
 router.get("/get-blog/:id", getSingleBlog)
-router.put("/update-blog/:id", updateBlog)
+router.put("/update-blog/:id",upload.single("image"), updateBlog)
 router.delete("/delete-blog/:id", deleteBlog)
 
 

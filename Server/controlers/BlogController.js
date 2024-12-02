@@ -90,40 +90,58 @@ const getSingleBlog = async (req, res) => {
     }
 }
 
-
 const updateBlog = async (req, res) => {
     try {
-        const data = await Blog.findOne({ _id: req.params.id });
+        // Log request details for debugging
+        console.log("Request Params:", req.params.id);
+        console.log("Request Body:", req.body);
+        if (req.file) console.log("File Path:", req.file.path);
+
+        // Find the blog by ID
+        const data = await Blog.findById(req.params.id);
         if (!data) {
             return res.status(404).json({
                 success: false,
-                message: "Blog Not Found"
+                message: "Blog Not Found",
             });
         }
-        console.log(req.body)
+
+        // Update fields if provided in the request
         data.blogName = req.body.blogName ?? data.blogName;
         data.blogDescription = req.body.blogDescription ?? data.blogDescription;
 
+        // Handle image upload
         if (req.file) {
-            const updateimageurl = await uploadImages(req.file.path);
-            data.image = updateimageurl;
-            fs.unlinkSync(req.file.path)
+            try {
+                const updateImageUrl = await uploadImages(req.file.path);
+                data.image = updateImageUrl;
+                fs.unlinkSync(req.file.path); // Delete local file after upload
+            } catch (imageError) {
+                console.error("Image Upload Error:", imageError);
+                return res.status(500).json({
+                    success: false,
+                    message: "Image upload failed",
+                });
+            }
         }
 
+        // Save the updated blog
         await data.save();
+
+        // Respond with success
         res.status(200).json({
             success: true,
             message: "Blog updated successfully",
-            data: data
+            data: data,
         });
     } catch (error) {
-        console.error("Error updating cinema:", error); // Log the error for debugging
+        console.error("Error updating blog:", error); // Log the error for debugging
         res.status(500).json({
             success: false,
-            message: "Internal Server Error"
+            message: "Internal Server Error",
         });
     }
-}
+};
 
 
 const deleteBlog = async (req, res) => {

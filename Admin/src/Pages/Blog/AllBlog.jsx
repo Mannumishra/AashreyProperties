@@ -60,8 +60,8 @@ const AllBlog = () => {
                 </div>
             </div>
 
-            <section className="d-table ">
-                <table class="table table-bordered table-striped table-hover">
+            <section className="dis-table ">
+                <table className="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Sr.No.</th>
@@ -77,9 +77,9 @@ const AllBlog = () => {
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{item.blogName}</td>
-                                    <td><img src={item.image} style={{ height: 100 }} /></td>
-                                    <td><Link className="btn btn-success" to={`/edit-blog/${item._id}`}>Edit <i class="fa-solid fa-pen-to-square"></i></Link></td>
-                                    <td><Link className="btn btn-danger" onClick={() => deleteCinema(item._id)}>Delete <i class="fa-solid fa-trash"></i></Link></td>
+                                    <td><img src={item.image} style={{ height: 50 }} /></td>
+                                    <td><Link className="bt edit" to={`/edit-blog/${item._id}`}>Edit <i class="fa-solid fa-pen-to-square"></i></Link></td>
+                                    <td><Link className="bt delete" onClick={() => deleteCinema(item._id)}>Delete <i class="fa-solid fa-trash"></i></Link></td>
                                 </tr>
                             )
                         }
